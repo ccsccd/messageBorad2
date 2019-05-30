@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+    <script src="http://cdn.bootcss.com/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="https://cdn.bootcss.com/sockjs-client/1.1.4/sockjs.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+<button onclick="add()">添加父节点</button>
+<script>
+    var demo = [
+        {
+            "id": 1,
+            "username": "测试用户",
+            "text": "测试信息1",
+            "pid": 0,
+            "createTime": "2019-05-30 16:37:10",
+            "updateTime": null,
+            "userId": 1,
+            "childContent": [
+                {
+                    "id": 5,
+                    "username": "测试用户",
+                    "text": "测试信息5",
+                    "pid": 1,
+                    "createTime": "2019-05-30 16:38:15",
+                    "updateTime": null,
+                    "userId": 1,
+                    "childContent": [
+                        {
+                            "id": 6,
+                            "username": "测试用户",
+                            "text": "测试信息6",
+                            "pid": 5,
+                            "createTime": "2019-05-30 16:38:36",
+                            "updateTime": null,
+                            "userId": 1,
+                            "childContent": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "username": "测试用户",
+            "text": "测试信息3",
+            "pid": 0,
+            "createTime": "2019-05-30 16:37:52",
+            "updateTime": "2019-05-30 17:39:39",
+            "userId": 1,
+            "childContent": [
+                {
+                    "id": 7,
+                    "username": "测试用户",
+                    "text": "测试信息7",
+                    "pid": 3,
+                    "createTime": "2019-05-30 16:38:43",
+                    "updateTime": null,
+                    "userId": 1,
+                    "childContent": []
+                }
+            ]
+        },
+        {
+            "id": 4,
+            "username": "测试用户",
+            "text": "测试信息4",
+            "pid": 0,
+            "createTime": "2019-05-30 16:38:00",
+            "updateTime": null,
+            "userId": 1,
+            "childContent": []
+        }
+    ];
+    console.log("old", demo);
+
+    function add() {
+        init(demo);
+        addNode(demo)
+        console.log("new", demo);
+    }
+
+    function init(item) {
+        for (let i = 0; i < item.length; i++) {
+            if (item[i].childContent.length !== 0) {
+                var oChild = item[i].childContent;
+                console.log("oChild111", oChild);
+                init(oChild);
+            }
+        }
+        return item;
+    }
+
+    function addNode(item) {
+        for (let i = 0; i < item.length; i++) {
+            if (item[i].childContent!== 0) {
+                var oChild = item[i].childContent;
+                for (let j = 0; j < oChild.length; j++) {
+                    console.log("oChild", oChild);
+                }
+                addNode(oChild);
+            }
+        }
+        return item;
+    }
+</script>
+</body>
+
+</html>
