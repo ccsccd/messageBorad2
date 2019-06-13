@@ -1,14 +1,13 @@
 package org.wecan.demo.controller;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.wecan.demo.entity.EmailUtilEntity;
 import org.wecan.demo.entity.MessageEntity;
 import org.wecan.demo.entity.UserEntity;
 import org.wecan.demo.service.MessageBoardService;
-import org.wecan.demo.util.EmailUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -20,6 +19,7 @@ import java.util.Map;
 
 @Controller
 @SessionAttributes({"user"})
+@Api
 public class MainController {
     @Autowired
     MessageBoardService messageBoardService;

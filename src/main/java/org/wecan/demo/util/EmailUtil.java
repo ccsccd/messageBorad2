@@ -2,16 +2,11 @@ package org.wecan.demo.util;
 
 import org.apache.commons.mail.EmailException;
 import org.apache.commons.mail.SimpleEmail;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.wecan.demo.entity.EmailUtilEntity;
-import org.wecan.demo.mapper.EmailUtilMapper;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-@Service
 public class EmailUtil {
 
     public static String achieveCode() {
