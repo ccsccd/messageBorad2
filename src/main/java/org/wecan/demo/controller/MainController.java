@@ -1,6 +1,7 @@
 package org.wecan.demo.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,21 +25,25 @@ public class MainController {
     @Autowired
     MessageBoardService messageBoardService;
 
+    @ApiOperation(value="获取注册页面", notes="获取注册页面",produces = "text/html")
     @GetMapping("/view/register")
     public String view() {
         return "register";
     }
 
+    @ApiOperation(value="获取登录页面", notes="获取登录页面",produces = "text/html")
     @GetMapping("/view/login")
     public String view2() {
         return "login";
     }
 
+    @ApiOperation(value="获取主页面", notes="获取主页面",produces = "text/html")
     @GetMapping("/view/main")
     public String view3() {
         return "main";
     }
 
+    @ApiOperation(value="注册", notes="注册",produces = "application/json")
     @PostMapping("/register")
     @ResponseBody
     public Map<String, Object> register(@RequestParam("username") final String username,
@@ -82,6 +87,7 @@ public class MainController {
         return res;
     }
 
+    @ApiOperation(value="登录", notes="登录",produces = "application/json")
     @PostMapping("/login")
     @ResponseBody
     public Map<String, Object> login(@RequestParam("eMail") final String eMail,
@@ -112,6 +118,7 @@ public class MainController {
         return res;
     }
 
+    @ApiOperation(value="获取所有留言", notes="获取所有留言",produces = "application/json")
     @GetMapping("/info")
     @ResponseBody
     public List info() {
@@ -119,6 +126,7 @@ public class MainController {
         return messageList;
     }
 
+    @ApiOperation(value="添加一条留言", notes="添加一条留言",produces = "application/json")
     @PostMapping("/user/insert")
     @ResponseBody
     public Map<String, Object> insert(@RequestParam("text") final String text,
@@ -139,6 +147,7 @@ public class MainController {
         return res;
     }
 
+    @ApiOperation(value="删除一条留言", notes="删除一条留言",produces = "application/json")
     @PostMapping("/user/delete")
     @ResponseBody
     public Map<String, Object> delete(@RequestParam("mid") final int mid,
@@ -157,6 +166,8 @@ public class MainController {
         return res;
     }
 
+
+    @ApiOperation(value="更新一条留言", notes="更新一条留言",produces = "application/json")
     @PostMapping("/user/update")
     @ResponseBody
     public Map<String, Object> update(@RequestParam("text") final String text,
@@ -176,6 +187,7 @@ public class MainController {
         return res;
     }
 
+    @ApiOperation(value="模糊搜索指定留言", notes="模糊搜索指定留言",produces = "application/json")
     @GetMapping("/search")
     @ResponseBody
     public List search(@RequestParam("content") final String content) {
@@ -183,6 +195,7 @@ public class MainController {
         return messageList;
     }
 
+    @ApiOperation(value="发送验证码", notes="发送验证码",produces = "application/json")
     @PostMapping("/email")
     @ResponseBody
     public Map<String, Object> email(@RequestParam("eMail") final String eMail,
